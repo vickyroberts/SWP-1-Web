@@ -1,6 +1,94 @@
-<div>
-    <h1>Home Page</h1>
-    <ul *ngFor="let prod of products">
-        {{prod.productName}}
-    </ul>
-</div>
+<!-- Full Page Image Background Carousel Header -->
+   <carousel-new [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+    <slide *ngFor="let slidez of slides; let index=index"
+            [active]="slidez.active">
+            <div class="fill" [ngStyle]="{'background-image':'url(' + slidez.image + ')'}" height="536px" width="100%"></div>
+                <div class="carousel-caption">
+                    <h2>{{slidez.text}}</h2>
+					<p>{{slidez.text}}</p>
+                </div>    
+        </slide>
+    </carousel-new>
+    <!-- Page Content -->
+    <div class="container main-content">
+		<section class="row carousel-wrap1">
+			<div class="col-xs-12 col-md-12">
+				<h2>Popular Categories</h2>
+				<div class="carousel carousel-showsixmoveone slide row" id="carousel123">
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="col-xs-12 col-sm-3 col-md-3">
+								<a href="#">
+									<img src="assets/images/chitale-dahi.jpg" class="img-responsive">									
+									<p class="view-all">View All</p>
+								</a>
+								<p class="offer-details">Up to 50% Off</p>
+								<p>50/-</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-xs-12 col-sm-3 col-md-3">
+								<a href="#">
+									<img src="assets/images/chitale-shrikhand.png" class="img-responsive">									
+									<p class="view-all">View All</p>
+								</a>
+								<p class="offer-details">Best Offers</p>
+								<p>50/-</p>
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-xs-12 col-sm-3 col-md-3">
+								<a href="#">
+									<img src="assets/images/milk-bottol.png" class="img-responsive">
+									<p class="view-all">View All</p>
+								</a>
+								<p class="offer-details">Up to 10% Off</p>
+								<p>50/-</p>
+							</div>
+						</div>          
+					</div>
+				</div>
+				<a class="left carousel-control" href="#carousel123" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+				<a class="right carousel-control" href="#carousel123" data-slide="next"><i class="fa fa-angle-right"></i></a>
+			</div>
+		</section>
+		<section class="row carousel-wrap2">
+			<div class="col-md-12">
+				<h2>Today's Offers</h2>
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<a href="#">
+							<img src="assets/images/offer1.png" class="img-responsive">							
+						</a>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<a href="#">
+							<img src="assets/images/offer2.png" class="img-responsive">							
+						</a>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<a href="#">
+							<img src="assets/images/offer3.png" class="img-responsive">							
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="row carousel-wrap3">
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<h2>All Types of Milk Products</h2>
+				<a href="#">
+					<img src="assets/images/offer4.png" class="img-responsive">							
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<h2>Govind Milk & Milk Products</h2>
+				<a href="#">
+					<img src="assets/images/offer5.png" class="img-responsive">							
+				</a>
+			</div>					
+		</section>
+	</div>
+    
+
+    <!-- /.container -->

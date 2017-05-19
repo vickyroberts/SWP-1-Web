@@ -3,38 +3,45 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 import {AuthenticationService} from '../CommonServices/authentication.service';
 import {AlertService} from '../CommonServices/alert.service';
+import {ConfigurationData} from '../CommonServices/configuration.model';
+import {SharedServiceGM} from '../CommonServices/shared.service';
 
 @Component({
     moduleId:module.id,
-    templateUrl:'login.component.html'
+    templateUrl:'login.component.html'    
 })
 export class LoginComponent implements OnInit{
-    returnUrl:string;
+    returnUrl:any = {};
     loading = false;
     model: any = {};
 
     constructor(private router: Router,
     private route:ActivatedRoute,
     private authService: AuthenticationService,
-    private alert: AlertService
-    ){}   
+    private alert: AlertService,
+    private sharedServe : SharedServiceGM
+    ){
+        this.sharedServe.isLoginPage = true;
+    }   
 
     ngOnInit(){
+        
         this.authService.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/fullhouse';
     }
 
     login(){
         this.loading = true;
         this.authService.authenticateUser(this.model.username, this.model.password).subscribe(
             data=> {
-                if(data && data.status == 'error')
+                if(data && data.status == ConfigurationData.errorStatus)
                 {
                     this.alert.error(data.message);
                 }
                 else
                 {
-                    this.router.navigate([this.returnUrl]);
+                   this.sharedServe.isLoginPage = false;                   
+                   this.router.navigate([this.returnUrl]);                                      
                 }                
             },
             error => {

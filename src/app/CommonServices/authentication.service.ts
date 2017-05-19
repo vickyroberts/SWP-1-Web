@@ -3,6 +3,8 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import {ConfigurationData} from './configuration.model';
+
 @Injectable()
 export class AuthenticationService{
     
@@ -15,19 +17,19 @@ export class AuthenticationService{
         let headers = new Headers({ 'Content-Type': 'application/json' }); //Set content type to JSON
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('http://localhost:3000/api/member/authuser', {uname:userName, doorkey:password}, { headers: headers })
+        return this.http.post(ConfigurationData.appBLURL + 'member/authuser', authInfo, { headers: headers })
         .map((response : Response) => {
             let userInfo = response.json();
-            if(userInfo.status == "success" && userInfo.token)
+            if(userInfo.status == ConfigurationData.successStatus && userInfo.token)
             {
                 //store the token info in localstorage.
-                localStorage.setItem('currentUser', userInfo.token);
+                localStorage.setItem(ConfigurationData.currentUserName, userInfo.token);
             }
             return response.json();
         });
     }
 
     logout(){
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem(ConfigurationData.currentUserName);
     }
 }
