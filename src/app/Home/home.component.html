@@ -16,36 +16,16 @@
 				<h2>Popular Categories</h2>
 				<div class="carousel carousel-showsixmoveone slide row" id="carousel123">
 					<div class="carousel-inner">
-						<div class="item active">
+						<div [ngClass]="category.styleClass" *ngFor="let category of productsCategory; let catCount = index">
 							<div class="col-xs-12 col-sm-3 col-md-3">
 								<a href="#">
-									<img src="assets/images/chitale-dahi.jpg" class="img-responsive">									
+									<img [src]="category.image_path" class="img-responsive">									
 									<p class="view-all">View All</p>
 								</a>
-								<p class="offer-details">Up to 50% Off</p>
-								<p>50/-</p>
-							</div>
-						</div>
-						<div class="item">
-							<div class="col-xs-12 col-sm-3 col-md-3">
-								<a href="#">
-									<img src="assets/images/chitale-shrikhand.png" class="img-responsive">									
-									<p class="view-all">View All</p>
-								</a>
-								<p class="offer-details">Best Offers</p>
-								<p>50/-</p>
-							</div>
-						</div>
-						<div class="item">
-							<div class="col-xs-12 col-sm-3 col-md-3">
-								<a href="#">
-									<img src="assets/images/milk-bottol.png" class="img-responsive">
-									<p class="view-all">View All</p>
-								</a>
-								<p class="offer-details">Up to 10% Off</p>
-								<p>50/-</p>
-							</div>
-						</div>          
+								<p class="offer-details">{{catCount}} - {{category.category_name}}</p>
+								<!--<p>50/-</p>-->
+							</div>							
+						</div>							
 					</div>
 				</div>
 				<a class="left carousel-control" href="#carousel123" data-slide="prev"><i class="fa fa-angle-left"></i></a>
@@ -56,37 +36,21 @@
 			<div class="col-md-12">
 				<h2>Today's Offers</h2>
 				<div class="row">
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<a href="#">
-							<img src="assets/images/offer1.png" class="img-responsive">							
+					<div class="col-xs-12 col-sm-4 col-md-4" *ngFor="let offer of productsOffer">
+						<a [routerLink]="['/fullhouse', {outlets:{'headeroutlet':'products'}}]">
+							<img [src]="offer.image_path" class="img-responsive">							
 						</a>
-					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<a href="#">
-							<img src="assets/images/offer2.png" class="img-responsive">							
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<a href="#">
-							<img src="assets/images/offer3.png" class="img-responsive">							
-						</a>
-					</div>
+					</div>					
 				</div>
 			</div>
 		</section>
 		<section class="row carousel-wrap3">
-			<div class="col-xs-12 col-sm-6 col-md-6">
-				<h2>All Types of Milk Products</h2>
-				<a href="#">
-					<img src="assets/images/offer4.png" class="img-responsive">							
+			<div class="col-xs-12 col-sm-6 col-md-6" *ngFor="let bannerBottom of productsBannerBottom">
+				<h2>{{bannerBottom.ad_title}}</h2>
+				<a [routerLink]="['/fullhouse', {outlets:{'headeroutlet':'products'}}]">
+					<img [src]="bannerBottom.ad_image_path" class="img-responsive">							
 				</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6">
-				<h2>Govind Milk & Milk Products</h2>
-				<a href="#">
-					<img src="assets/images/offer5.png" class="img-responsive">							
-				</a>
-			</div>					
+			</div>								
 		</section>
 	</div>
     

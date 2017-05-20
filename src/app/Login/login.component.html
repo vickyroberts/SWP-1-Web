@@ -17,14 +17,15 @@
 					<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" class="form-horizontal" novalidate>
 						<div class="form-group">
 							<div class="col-xs-12">							  
-                              <input type="email" class="form-control" name="username" placeholder="emailid@domain.com" [(ngModel)]="model.username" #username="ngModel" required />
+                              <input type="email" class="form-control" name="username" (blur)="validateEmailId()" placeholder="emailid@domain.com" [(ngModel)]="model.username" #username="ngModel" required />
                               <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-xs-12"> 
-							  <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Enter Password" required />
-                              <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+							  <input type="password" class="form-control" name="password" (blur)="validatePasswordLength()" [(ngModel)]="model.password" #password="ngModel" placeholder="Enter Password" required />
+                  <div *ngIf="f.submitted && !password.valid" class="help-block error">Password is required</div>
+									<div *ngIf="model.passwordLengthError" class="help-block error">Password length should be between 6 to 12 characters</div>
 							</div>
 						</div>
 						<div class="form-group"> 

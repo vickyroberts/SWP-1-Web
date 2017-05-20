@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit{
     ngOnInit(){
         
         this.authService.logout();
+        this.model.passwordLengthError = false;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/fullhouse';
     }
 
@@ -48,5 +49,35 @@ export class LoginComponent implements OnInit{
                 this.alert.error(error);
                 this.loading = false;
             });
+    }
+
+    validateEmailId(){
+        var emailField = this.model.username;
+
+        if(emailField)
+        {
+            var atpos = emailField.indexOf("@");
+            var dotpos = emailField.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailField.length) {
+                alert("Not a valid e-mail address");
+                return false;
+            }
+        }
+        
+    }
+
+    validatePasswordLength(){
+        if(this.model.password)
+        {        
+            var pwdLength = this.model.password.length;
+            if(pwdLength < 6 || pwdLength > 12)
+            {
+                this.model.passwordLengthError = true;
+            }
+            else
+            {
+                this.model.passwordLengthError = false;
+            }
+        }
     }
 }
