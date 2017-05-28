@@ -54,13 +54,13 @@ export class LoginComponent implements OnInit{
     validateEmailId(){
         var emailField = this.model.username;
 
+        this.model.isValidEmail = true;
         if(emailField)
         {
             var atpos = emailField.indexOf("@");
             var dotpos = emailField.lastIndexOf(".");
-            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailField.length) {
-                alert("Not a valid e-mail address");
-                return false;
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailField.length) {                
+                this.model.isValidEmail = false;
             }
         }
         

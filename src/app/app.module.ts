@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from '@angular/material';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import {ProductModule} from './Products/product.module';
 import { AppComponent } from './app.component';
@@ -25,11 +28,13 @@ import {HeaderComponent} from './SharedComponents/header.component';
   imports: [
     BrowserModule,   
     FormsModule,
+    MaterialModule,
+    BrowserAnimationsModule,
     HttpModule,
-    ProductModule,
+    ProductModule,    
     routing
   ],
-  providers: [AlertService, AuthenticationService, AuthGuard, SharedServiceGM],
+  providers: [AlertService, AuthenticationService, AuthGuard, SharedServiceGM, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

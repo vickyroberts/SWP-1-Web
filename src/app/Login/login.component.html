@@ -15,17 +15,21 @@
 				<h2>Login</h2>							
 				<div class="login-wrap">				
 					<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" class="form-horizontal" novalidate>
-						<div class="form-group">
-							<div class="col-xs-12">							  
-                              <input type="email" class="form-control" name="username" (blur)="validateEmailId()" placeholder="emailid@domain.com" [(ngModel)]="model.username" #username="ngModel" required />
-                              <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+						<div>
+							<div class="col-xs-12">		
+															<md-input-container class="material-full-width">					  
+                              <input type="email" mdInput name="username" (blur)="validateEmailId()" placeholder="Email" [(ngModel)]="model.username" #username="ngModel" required />
+															</md-input-container>
+                              <div *ngIf="(f.submitted && !username.valid) || (f.submitted && !model.isValidEmail)" class="login-invalid">Please enter valid email id</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div>
 							<div class="col-xs-12"> 
-							  <input type="password" class="form-control" name="password" (blur)="validatePasswordLength()" [(ngModel)]="model.password" #password="ngModel" placeholder="Enter Password" required />
-                  <div *ngIf="f.submitted && !password.valid" class="help-block error">Password is required</div>
-									<div *ngIf="model.passwordLengthError" class="help-block error">Password length should be between 6 to 12 characters</div>
+								<md-input-container class="material-full-width">
+							  <input type="password" mdInput name="password" (blur)="validatePasswordLength()" [(ngModel)]="model.password" #password="ngModel" placeholder="Enter Password" required />
+								</md-input-container>
+                  <div *ngIf="f.submitted && !password.valid" class="login-invalid">Please enter password</div>
+									<!--<div *ngIf="model.passwordLengthError" class="help-block error">Password length should be between 6 to 12 characters</div>-->
 							</div>
 						</div>
 						<div class="form-group"> 
@@ -35,7 +39,7 @@
 						</div>
 						<div class="form-group"> 
 							<div class="col-xs-12 button-wrap text-center">
-							 <button type="submit" class="btn btn-default primary-action-btn">Submit</button>
+							 <button type="submit" md-raised-button class="btn btn-default primary-action-btn">Submit</button>
 							</div>
 						</div>
 						<div class="form-group"> 
